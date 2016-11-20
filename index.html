@@ -4,8 +4,22 @@
         <meta charset="UTF-8">
         <link rel="shortcut icon" href="app/assets/images/favicon.ico" type="image/x-icon">
         <link rel="icon" href="app/assets/images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="app/assets/styles/app.css">
+        <script type="text/javascript" src="app/js/app.js"></script>
         <title>News api</title>
     </head>
     <body>
+        <div id="wrapper">
+            <header>SMN - Super Mega News</header>
+            <div id="articles">
+                <h3>latest news ...</h3>
+            </div>
+        </div>
+        <footer>Powered by DRem (Andrei Hrakovich)</footer>
     </body>
+    <script type="text/javascript">
+        window.onload = function() {
+            app.run()
+        }
+    </script>
 </html>

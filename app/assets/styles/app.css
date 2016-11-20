@@ -1,0 +1,103 @@
+#wrapper{
+    max-width: 960px;
+    margin: auto;
+}
+
+.error, .info{
+    margin-top:30px;
+    width: 100%;
+}
+.error{
+    border: 2px solid #f31281;
+    color: #f31281;
+}
+.info{
+    border: 2px solid #4c59f3;
+    color: #4c59f3;
+}
+.error .message, .info .message{
+    margin-left: 30px;
+    padding-bottom: 15px;
+    font-size: 1.21em;
+}
+
+.error .label, .info .label{
+    font-weight: bold;
+    font-size: 0.8em;
+    padding-top :15px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+}
+
+.article{
+    margin: 10px 0;
+    display: block;
+}
+
+.article .image{
+    float: left;
+    margin: 0 10px;
+}
+
+.article::after {
+    content:"";
+    display:block;
+    clear:both;
+}
+
+.article .image img{
+    height: auto;
+    width: 250px;
+}
+
+.article .asset a{
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+    font-family: Proxima Nova,Proxima-Nova,proxima-nova,Helvetica,Arial,sans-serif;
+}
+
+.article .asset h3:hover{
+    color: #29c5e6;
+}
+
+.article .asset h3{
+    font-size: 1.294em;
+    line-height: 1.1em;
+    text-transform: none;
+    font-family: Panton,sans-serif;
+    font-weight: 600;
+    letter-spacing: -.009em;
+}
+
+.article .asset p{
+    font-size: .941em;
+    line-height: 1.25em;
+}
+.article .asset .publishat{
+    font-weight: bold;
+    font-size: 0.7em;
+}
+
+.article .asset .byline{
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #ff803f;
+}
+
+header{
+    color: #29c5e6;
+    font-size: 2.32em;
+    line-height: 1.1em;
+    font-family: Proxima Nova,Proxima-Nova,proxima-nova,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    padding-top: 20px;
+}
+
+footer{
+    color: #bbbbbb;
+    font-size: 0.7em;
+    text-align: center;
+    margin: 35px auto;
+}
