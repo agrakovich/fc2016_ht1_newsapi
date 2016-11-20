@@ -5,7 +5,6 @@ const config = {
 }
 const app = {
     run: () => {
-        //TODO: move to config apiUrl
         fetch(config.newsUrl)
             .then(response => response.json())
             .then(jsonResponse => {
