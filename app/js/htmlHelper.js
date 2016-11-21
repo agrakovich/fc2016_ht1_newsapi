@@ -58,7 +58,7 @@ class HtmlHelper{
     }
 
     static fillElement(elementId, html){
-        var element = document.getElementById(elementId);
+        let element = document.getElementById(elementId);
         if(element){
             element.innerHTML = html;
         }

@@ -7,7 +7,7 @@ class NewsApplication {
     }
 
     run(){
-        fetch(this.newsUrl)
+        fetch(this.newsUrl, {mode: 'cors'})
             .then(response => response.json())
             .then(jsonResponse => {
                 let articlesHtml = '';
@@ -35,19 +35,18 @@ class NewsApplication {
     }
 
     _getArticleProxy(article){
-        let proxy = new Proxy(article, {
+        return new Proxy(article, {
             get(target, prop) {
                 if (!target[prop]) {
                     console.warn(`Property: ${prop} does not exist in object.`, target);
                     return undefined;
                 }
-                if(prop == 'publishedAt'){
+                if (prop == 'publishedAt') {
                     let date = new Date(target[prop]);
                     return date.toLocaleString()
                 }
                 return target[prop];
             }
         });
-        return proxy;
     }
-};
+}
