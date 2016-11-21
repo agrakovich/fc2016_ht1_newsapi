@@ -5,12 +5,16 @@
         <link rel="shortcut icon" href="app/assets/images/favicon.ico" type="image/x-icon">
         <link rel="icon" href="app/assets/images/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="app/assets/styles/app.css">
-        <script type="text/javascript" src="app/js/app.js"></script>
-        <title>News api</title>
+        <script type="text/javascript" src="app/js/htmlHelper.js"></script>
+        <script type="text/javascript" src="app/js/newsApplication.js"></script>
+        <title>SMN</title>
     </head>
     <body>
         <div id="wrapper">
-            <header>SMN - Super Mega News</header>
+            <header>
+                SMN - Super Mega News
+                <sup>(supported by  <a href="https://newsapi.org">NewsApi</a>)</sup>
+            </header>
             <div id="articles">
                 <h3>latest news ...</h3>
             </div>
@@ -19,7 +23,13 @@
     </body>
     <script type="text/javascript">
         window.onload = function() {
-            app.run()
+            const config = {
+                newsUrl: 'https://newsapi.org/v1/articles?source=bbc-news&apiKey=e4f61131ae2a4c888846c71d56ebb5c0',
+                newsElementId: 'articles',
+                isDebugMode: true
+            }
+            const app = new NewsApplication(config);
+            app.run();
         }
     </script>
 </html>
