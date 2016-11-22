@@ -3,34 +3,25 @@ class NewsApplication {
     constructor(config) {
         this.newsUrl = config.newsUrl;
         this.newsElementId = config.newsElementId;
-        this.isDebugMode = config.isDebugMode;
+        this.htmlHelper = new HtmlHelper();
+        this.templateBuilder = new TemplateBuilder(this.htmlHelper);
     }
 
     run(){
         fetch(this.newsUrl, {mode: 'cors'})
             .then(response => response.json())
             .then(jsonResponse => {
-                let articlesHtml = '';
-                this.isDebugMode && console.log(jsonResponse);
+                let articles = jsonResponse.articles.map(article => {
+                    return this._getArticleProxy(article);
+                });
 
-                if(jsonResponse.status === 'ok') {
-                    if (jsonResponse.articles && jsonResponse.articles.length > 0) {
-                        jsonResponse.articles = jsonResponse.articles.map(article => {
-                            return this._getArticleProxy(article);
-                        });
-                        articlesHtml = HtmlHelper.getArticlesHtml(jsonResponse.articles);
-                    } else {
-                        articlesHtml = HtmlHelper.getInfoHtml('Sorry. Today there is no news =(');
-                    }
-                } else {
-                    articlesHtml =  HtmlHelper.getErrorHtml('Sorry. Something wrong =(');
-                    this.isDebugMode && console.error(jsonResponse.message);
-                }
-                HtmlHelper.fillElement(this.newsElementId, articlesHtml);
+                let articlesHtml = this.templateBuilder.getArticlesHtml(articles);
+
+                this.htmlHelper.fillElement(this.newsElementId, articlesHtml || this.templateBuilder.getInfoHtml('Sorry. Today there is no news =('));
             })
             .catch( error => {
-                HtmlHelper.fillElement(this.newsElementId,  HtmlHelper.getErrorHtml('Sorry. Something wrong =('));
-                this.isDebugMode && console.error(error.message);
+                this.htmlHelper.fillElement(this.newsElementId,  this.templateBuilder.getErrorHtml('Sorry. Something wrong =('));
+                console.error(error.message);
             });
     }
 
@@ -38,7 +29,6 @@ class NewsApplication {
         return new Proxy(article, {
             get(target, prop) {
                 if (!target[prop]) {
-                    console.warn(`Property: ${prop} does not exist in object.`, target);
                     return undefined;
                 }
                 if (prop == 'publishedAt') {

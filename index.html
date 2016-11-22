@@ -6,6 +6,7 @@
         <link rel="icon" href="app/assets/images/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="app/assets/styles/app.css">
         <script type="text/javascript" src="app/js/htmlHelper.js"></script>
+        <script type="text/javascript" src="app/js/templateBuilder.js"></script>
         <script type="text/javascript" src="app/js/newsApplication.js"></script>
         <title>SMN</title>
     </head>
@@ -25,8 +26,7 @@
         window.onload = function() {
             const config = {
                 newsUrl: 'https://newsapi.org/v1/articles?source=bbc-news&apiKey=e4f61131ae2a4c888846c71d56ebb5c0',
-                newsElementId: 'articles',
-                isDebugMode: false
+                newsElementId: 'articles'
             };
             const app = new NewsApplication(config);
             app.run();
