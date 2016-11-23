@@ -8,7 +8,7 @@ class NewsApplication {
     }
 
     run(){
-        fetch(this.newsUrl, {mode: 'cors'})
+        fetch(this.newsUrl)
             .then(response => response.json())
             .then(jsonResponse => {
                 let articles = jsonResponse.articles.map(article => {
